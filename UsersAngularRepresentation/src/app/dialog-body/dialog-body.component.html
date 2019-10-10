@@ -1,0 +1,12 @@
+<!--Popup element with total user count and active user count-->
+<h2 mat-dialog-title>Popup header</h2>
+
+<mat-dialog-content>
+
+<p> Total Count: {{userSummary.usersCount}} </p>
+<p> Active Count: {{userSummary.usersActive}} </p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions>
