@@ -18,12 +18,7 @@ export class UserService {
 
   //changing User data in database
   putUser(user : User)  {   
-    //const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
-    //const data = JSON.stringify(user); 
-    var json = JSON.parse('{"userID":' + user.UserID + 
-                          ',"userName":"' + user.UserName + 
-                          '","userActive":'+ user.UserActive + '}');  
-    return this.http.put(environment.apiBaseURI + 'Users/' + user.UserID, json).subscribe((response) => {
+      return this.http.put(environment.apiBaseURI + 'Users/' + user.userID, user).subscribe((response) => {
       //showing the response in console
       console.log("Response is: ", response);
    },

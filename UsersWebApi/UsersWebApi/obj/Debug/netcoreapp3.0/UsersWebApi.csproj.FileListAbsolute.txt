@@ -107,4 +107,9 @@ C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\bin\Debug\netcorea
 C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\UsersWebApi.pdb
 C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.dll
 C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.pdb
+C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
 C:\Users\Ann\Projects\ITCraftTestTask\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.MvcApplicationPartsAssemblyInfo.cache

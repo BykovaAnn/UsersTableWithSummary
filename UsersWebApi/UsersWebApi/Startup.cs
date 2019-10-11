@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using UsersWebApi.Models;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Newtonsoft.Json.Serialization;
 
 namespace UsersWebApi
 {
@@ -27,6 +29,10 @@ namespace UsersWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
             services.AddDbContext<UsersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UsersDBConnection")));
         }
 
@@ -52,6 +58,8 @@ namespace UsersWebApi
 
             app.UseCors(option => option.WithOrigins("http://localhost:4200").AllowAnyMethod());
             app.UseCors(option => option.WithOrigins("http://localhost:4200").AllowAnyHeader());
+
+
         }
     }
 }
