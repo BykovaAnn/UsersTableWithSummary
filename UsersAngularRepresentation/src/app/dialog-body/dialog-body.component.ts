@@ -23,9 +23,9 @@ export class DialogBodyComponent implements OnInit {
 
   ngOnInit() {
     //getting data for popup from service method
-    //this.service.getUsersSummary().subscribe(res => {
-    //  this.userSummary = res;
-    //});
+    this.service.getUsersSummary().subscribe(res => {
+      this.userSummary = res;
+    });
   }
 
   close() {
