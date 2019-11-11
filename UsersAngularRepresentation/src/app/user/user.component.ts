@@ -5,6 +5,7 @@ import { User } from '../model/user';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogBodyComponent } from '../dialog-body/dialog-body.component';
 import { UsersSummaryService } from '../shared/users-summary.service';
+import { UsersSummary } from '../model/users-summary';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +16,7 @@ export class UserComponent implements OnInit {
 
   users: User[];
   _user: User; 
+  userSummary: UsersSummary;
 
   constructor(private service: UserService, 
     private matDialog: MatDialog,
@@ -30,6 +32,13 @@ export class UserComponent implements OnInit {
   //opening pop-up with total user count and active user count on button click
   openDialog() {
     const dialogConfig = new MatDialogConfig();
+    this.serviceSummary.getUsersSummary().subscribe(res => {
+      this.userSummary = res;
+    });
+    dialogConfig.data = { 
+      usersCount: this.userSummary.usersCount,
+      usersActive: this.userSummary.usersActive
+    };
     this.matDialog.open(DialogBodyComponent, dialogConfig);
   }
 

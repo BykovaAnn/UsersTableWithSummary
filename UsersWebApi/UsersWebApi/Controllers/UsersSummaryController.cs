@@ -16,7 +16,7 @@ namespace UsersWebApi.Controllers
     public class UsersSummaryController : ControllerBase
     {
         private readonly UsersContext _context;
-        private UsersSummary usersSummary;
+        private UsersSummary usersSummary = new UsersSummary();
         public UsersSummaryController(UsersContext context)
         {
             _context = context;
@@ -28,7 +28,7 @@ namespace UsersWebApi.Controllers
         public async Task<ActionResult<UsersSummary>> GetUsersSummary()
         {
             usersSummary.UsersCount = await _context.Users.CountAsync<User>();
-            usersSummary.UsersActive = await _context.Users.CountAsync<User>(res => res.UserActive == true);
+            usersSummary.UsersActive = await _context.Users.CountAsync<User>(res => res.UserActive);
             return usersSummary;
         }
     }

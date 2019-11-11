@@ -10,18 +10,22 @@ import { UsersSummary } from '../model/users-summary';
 })
 export class DialogBodyComponent implements OnInit {
 
-  private userSummary: UsersSummary;
+  userSummary: UsersSummary;
+  usersCount: number;
+  usersActive: number;
 
   constructor(public dialogRef: MatDialogRef<DialogBodyComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private service: UsersSummaryService) { }
+    private service: UsersSummaryService) { 
+      this.usersCount = data.usersCount;
+      this.usersActive = data.usersActive;
+    }
 
   ngOnInit() {
     //getting data for popup from service method
-    this.service.getUsersSummary().subscribe(res => {
-      this.userSummary = res;
-    });
-    
+    //this.service.getUsersSummary().subscribe(res => {
+    //  this.userSummary = res;
+    //});
   }
 
   close() {
