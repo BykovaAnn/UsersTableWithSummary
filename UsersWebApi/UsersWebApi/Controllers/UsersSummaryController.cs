@@ -27,8 +27,8 @@ namespace UsersWebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<UsersSummary>> GetUsersSummary()
         {
-            usersSummary.UsersCount = _context.Users.Count<User>();
-            usersSummary.UsersActive = _context.Users.Count<User>(res => res.UserActive == true);
+            usersSummary.UsersCount = await _context.Users.CountAsync<User>();
+            usersSummary.UsersActive = await _context.Users.CountAsync<User>(res => res.UserActive == true);
             return usersSummary;
         }
     }
