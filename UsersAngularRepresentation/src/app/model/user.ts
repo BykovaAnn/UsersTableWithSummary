@@ -1,11 +1,11 @@
 //class for Users data from database
 export class User {
-    userID:number;  
+    id:string;  
     userName:string; 
     userActive:boolean;
 
-    constructor(userID: number, userName: string, userActive: boolean) {
-        this.userID = userID;
+    constructor(userID: string, userName: string, userActive: boolean) {
+        this.id = userID;
         this.userName = userName;
         this.userActive = userActive;
     }

@@ -221,10 +221,16 @@ C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\bin
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.csprojAssemblyReference.cache
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\staticwebassets\UsersWebApi.StaticWebAssets.Manifest.cache
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\staticwebassets\UsersWebApi.StaticWebAssets.xml
-C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.AssemblyInfoInputs.cache
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.AssemblyInfo.cs
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.RazorTargetAssemblyInfo.cache
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.dll
 C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.pdb
+C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\UsersWebApi.StaticWebAssets.xml
+C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
+C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\Documents\GitHub\UsersTableWithSummary\UsersWebApi\UsersWebApi\obj\Debug\netcoreapp3.0\UsersWebApi.MvcApplicationPartsAssemblyInfo.cache
