@@ -16,7 +16,7 @@ namespace UsersWebApi.Controllers
     public class UsersSummaryController : ControllerBase
     {
         private readonly UsersContext _context;
-        private UsersSummary usersSummary = new UsersSummary();
+        private UsersSummary usersSummary;
         public UsersSummaryController(UsersContext context)
         {
             _context = context;
