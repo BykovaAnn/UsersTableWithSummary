@@ -44,9 +44,9 @@ export class UserComponent implements OnInit {
   }
 
   //handler for checking/unchecking Active column
-  updateUserActive(userID:number, userName: string, userActive: boolean) {
+  updateUserActive(userID:string, userName: string, userActive: boolean) {
     console.log(event);
-    this._user = new User(userID, userName, userActive);
+    this._user = this.users.find( user => user.id == userID);
     this.service.putUser(this._user);
   }
 

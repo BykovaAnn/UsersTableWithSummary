@@ -18,7 +18,7 @@ export class UserService {
 
   //changing User data in database
   putUser(user : User)  {   
-      return this.http.put(environment.apiBaseURI + 'Users/' + user.userID, user).subscribe((response) => {
+      return this.http.put(environment.apiBaseURI + 'Users/' + user.id, user).subscribe((response) => {
       //showing the response in console
       console.log("Response is: ", response);
    },

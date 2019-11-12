@@ -15,12 +15,12 @@ namespace UsersWebApi.Models
             using (var context = new UsersContext(serviceProvider.GetRequiredService<DbContextOptions<UsersContext>>()))
             {
                 // Look for any Users
-                if (context.Users.Any())
+                if (context.ApplicationUsers.Any())
                 {
                     return;   // DB has been seeded
                 }
 
-                context.Users.AddRange(
+                context.ApplicationUsers.AddRange(
                     new User
                     {
                         UserName = "AdamFinch0980",

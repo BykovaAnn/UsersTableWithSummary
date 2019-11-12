@@ -1,3 +1,4 @@
+
 <div class="container">
     <table class="table table-striped">
       <thead>
@@ -9,11 +10,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users" >
-            <td>{{ user.userID }}</td>
+            <td>{{ user.id }}</td>
             <td>{{ user.userName }}</td>
             <td>
-                <input type="checkbox" [(ngModel)]="user.userActive" value="{{ user.userID }}"
-                (change)="updateUserActive(user.userID,user.userName,user.userActive)" />
+                <input type="checkbox" [(ngModel)]="user.userActive" value="{{ user.id }}"
+                (change)="updateUserActive(user.id,user.userName,user.userActive)" />
             </td>
         </tr>
       </tbody>
