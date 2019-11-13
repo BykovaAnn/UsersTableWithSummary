@@ -24,7 +24,6 @@ export class UserRegistrationService {
   comparePasswords(fb: FormGroup) {
     let confirmPswrdCtrl = fb.get('ConfirmPassword');
     //passwordMismatch
-    //confirmPswrdCtrl.errors={passwordMismatch:true}
     if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
       if (fb.get('Password').value != confirmPswrdCtrl.value)
         confirmPswrdCtrl.setErrors({ passwordMismatch: true });

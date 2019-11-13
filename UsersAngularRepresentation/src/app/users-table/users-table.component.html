@@ -1,0 +1,26 @@
+<nav class="navbar">
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+</nav>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.userName }}</td>
+                <td>
+                    <input type="checkbox" [(ngModel)]="user.userActive" value="{{ user.id }}"
+                        (change)="updateUserActive(user.id,user.userName,user.userActive)" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="mat-raised-button" (click)="openDialog()">Total</button>
+</div>

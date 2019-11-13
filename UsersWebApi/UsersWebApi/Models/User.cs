@@ -11,10 +11,6 @@ namespace UsersWebApi.Models
 {
     public class User : IdentityUser
     {
-        //PK
-        //[Key]
-        //public int UserID { get; set; }
-
         [Column(TypeName = "nvarchar(150)")]
         public string FullName { get; set; }
 

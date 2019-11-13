@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,9 @@ namespace UsersWebApi.Controllers
             
         }
 
-        // GET: api/Users
+        // GET: api/Users/
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.ApplicationUsers.OrderBy( x => x.UserName).ToListAsync();
@@ -32,7 +34,7 @@ namespace UsersWebApi.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<User>> GetUser(string id)
         {
             var user = await _context.ApplicationUsers.FindAsync(id);
 
@@ -46,6 +48,7 @@ namespace UsersWebApi.Controllers
 
         // PUT: api/Users/{id}
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutUser(string id, User user)
         {
             if (id != user.Id)
