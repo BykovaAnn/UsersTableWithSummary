@@ -1,0 +1,22 @@
+#UsersWebApi Project
+#bin, obj, .vs folders should be ignored
+
+UsersWebApi/UsersWebApi/bin
+UsersWebApi/UsersWebApi/obj
+UsersWebApi/.vs
+UsersWebApi/UsersWebApi/*.user
+
+
+#UsersAngularRepresentation Project
+#node_modules folder should be ignored
+
+UsersAngularRepresentation/.DS_STORE
+UsersAngularRepresentation/e2e_test.*
+UsersAngularRepresentation/node_modules
+
+
+#Another ignored file extentions
+*.exe
+*.sql
+*.tmp
+*.log

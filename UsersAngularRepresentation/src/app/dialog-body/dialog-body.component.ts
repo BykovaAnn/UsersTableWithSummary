@@ -14,12 +14,12 @@ export class DialogBodyComponent implements OnInit {
   //usersCount: number;
   //usersActive: number;
 
-  constructor(public dialogRef: MatDialogRef<DialogBodyComponent>, 
+  constructor(public dialogRef: MatDialogRef<DialogBodyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private service: UsersSummaryService) { 
-      //this.usersCount = data.usersCount;
-      //this.usersActive = data.usersActive;
-    }
+    private service: UsersSummaryService) {
+    //this.usersCount = data.usersCount;
+    //this.usersActive = data.usersActive;
+  }
 
   ngOnInit() {
     //getting data for popup from service method
