@@ -1,5 +1,5 @@
 FROM node:12.13 as node
-WORKDIR /app
+
 COPY . . 
 RUN npm install
 RUN npm run build --prod
