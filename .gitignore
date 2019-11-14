@@ -14,6 +14,8 @@ UsersWebApi/UsersWebApi/*.user
 UsersAngularRepresentation/.DS_STORE
 UsersAngularRepresentation/e2e_test.*
 UsersAngularRepresentation/node_modules
+UsersAngularRepresentation/dist
+UsersAngularRepresentation/app
 
 
 #Another ignored file extentions
