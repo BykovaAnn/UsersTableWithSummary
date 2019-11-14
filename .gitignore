@@ -21,3 +21,4 @@ UsersAngularRepresentation/node_modules
 *.sql
 *.tmp
 *.log
+*.lock
