@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace UsersWebApi
 {
@@ -52,10 +53,12 @@ namespace UsersWebApi
                 options.Password.RequiredLength = 4;
             }
             );
+            //services.AddTransient<IEmailSender, AuthMessageSender>();
+            //services.AddTransient<ISmsSender, AuthMessageSender>();
+        
+        //Jwt Authentication
 
-            //Jwt Authentication
-
-            var key = Encoding.UTF8.GetBytes(Configuration["UserAuthorization:JWT_Secret"].ToString());
+        var key = Encoding.UTF8.GetBytes(Configuration["UserAuthorization:JWT_Secret"].ToString());
 
             services.AddAuthentication(x =>
             {

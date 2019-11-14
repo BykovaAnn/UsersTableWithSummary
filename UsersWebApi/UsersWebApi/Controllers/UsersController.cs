@@ -26,7 +26,7 @@ namespace UsersWebApi.Controllers
 
         // GET: api/Users/
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.ApplicationUsers.OrderBy( x => x.UserName).ToListAsync();
