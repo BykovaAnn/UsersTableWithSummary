@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+  userswebapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PUBLISH_PROFILE: ./Properties/PublishProfiles/CustomProfile.pubxml
+        SOLUTION: UsersWebApi.sln
+    entrypoint: dotnet UsersWebApi.dll
+    ports:
+      - 8080:80
+    networks:
+      - internal
+    restart: unless-stopped
+
+networks:
+  internal:
