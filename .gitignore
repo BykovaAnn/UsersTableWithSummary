@@ -4,6 +4,7 @@
 UsersWebApi/UsersWebApi/bin
 UsersWebApi/UsersWebApi/obj
 UsersWebApi/.vs
+UsersWebApi/.db
 UsersWebApi/.vs/**
 UsersWebApi/UsersWebApi/*.user
 
