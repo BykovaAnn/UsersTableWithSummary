@@ -87,7 +87,11 @@ namespace UsersWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    var context = serviceScope.ServiceProvider.GetRequiredService<UsersContext>();
+            //    context.Database.Migrate();
+            //}
             //Allowing Angular app send http requests
             app.UseCors(option => option.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
