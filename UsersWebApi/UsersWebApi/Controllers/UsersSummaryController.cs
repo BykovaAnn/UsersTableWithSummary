@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UsersWebApi.Models;
@@ -17,11 +13,9 @@ namespace UsersWebApi.Controllers
     public class UsersSummaryController : ControllerBase
     {
         private readonly UsersContext _context;
-        private readonly UsersSummary usersSummary;
         public UsersSummaryController(UsersContext context)
         {
             _context = context;
-            usersSummary = new UsersSummary();
         }
 
         // GET: api/UsersSummary
@@ -29,9 +23,12 @@ namespace UsersWebApi.Controllers
         [Authorize]
         public async Task<ActionResult<UsersSummary>> GetUsersSummary()
         {
+            UsersSummary usersSummary = new UsersSummary();
             usersSummary.UsersCount = await _context.ApplicationUsers.CountAsync<User>();
             usersSummary.UsersActive = await _context.ApplicationUsers.CountAsync<User>(res => res.UserActive);
             return usersSummary;
         }
+
+
     }
 }
