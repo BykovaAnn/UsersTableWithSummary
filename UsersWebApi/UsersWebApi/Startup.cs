@@ -1,24 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using UsersWebApi.Models;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Newtonsoft.Json.Serialization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Identity.UI.Services;
+using Newtonsoft.Json.Serialization;
+using System;
+using System.Text;
+using UsersWebApi.Controllers;
+using UsersWebApi.Models;
 
 namespace UsersWebApi
 {
@@ -36,12 +30,12 @@ namespace UsersWebApi
         {
             //getting params for creating token
             services.Configure<AuthenticationOptions>(Configuration.GetSection("UserAuthorization"));
-            services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
             services.AddDbContext<UsersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UsersDBConnection")));
+            
             services.AddDefaultIdentity<User>().AddEntityFrameworkStores<UsersContext>();
             //simplifying password requirements
             services.Configure<IdentityOptions>(options =>
@@ -53,12 +47,10 @@ namespace UsersWebApi
                 options.Password.RequiredLength = 4;
             }
             );
-            //services.AddTransient<IEmailSender, AuthMessageSender>();
-            //services.AddTransient<ISmsSender, AuthMessageSender>();
         
         //Jwt Authentication
 
-        var key = Encoding.UTF8.GetBytes(Configuration["UserAuthorization:JWT_Secret"].ToString());
+        var key = Encoding.UTF8.GetBytes(Configuration["UserAuthorization:JWTSecret"].ToString());
 
             services.AddAuthentication(x =>
             {
@@ -87,11 +79,6 @@ namespace UsersWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            //{
-            //    var context = serviceScope.ServiceProvider.GetRequiredService<UsersContext>();
-            //    context.Database.Migrate();
-            //}
             //Allowing Angular app send http requests
             app.UseCors(option => option.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
@@ -107,7 +94,6 @@ namespace UsersWebApi
 
             app.UseCors(option => option.WithOrigins("http://localhost:4200").AllowAnyMethod());
             app.UseCors(option => option.WithOrigins("http://localhost:4200").AllowAnyHeader());
-
 
         }
     }

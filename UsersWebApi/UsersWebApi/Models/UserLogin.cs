@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace UsersWebApi.Models
+﻿namespace UsersWebApi.Models
 {
     //model for login form
     public class UserLogin

@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using UsersWebApi.Models;
-using Microsoft.Extensions.Configuration;
-using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Options;
+using UsersWebApi.Helpers;
+using Microsoft.Extensions.Logging;
 
 namespace UsersWebApi.Controllers
 {
@@ -22,13 +19,17 @@ namespace UsersWebApi.Controllers
     [ApiController]
     public class UsersAccountController : ControllerBase
     {
+        private readonly ILogger<UsersAccountController> _logger;
+
         private readonly UserManager<User> _userManager;
         private readonly AuthenticationOptions _options;
 
-        public UsersAccountController(UserManager<User> userManager, IOptions<AuthenticationOptions> options)
+        public UsersAccountController(ILogger<UsersAccountController> logger
+            , UserManager<User> userManager, IOptions<AuthenticationOptions> options)
         {
+            _logger = logger;
             _userManager = userManager;
-            //options consist of JWT_Secret and angular localhost url
+            //options consist of JWTSecret and angular localhost url
             _options = options.Value;
         }
 
@@ -36,24 +37,17 @@ namespace UsersWebApi.Controllers
         [Route("Register")]
         //POST : /api/UsersAccount/Register
         //Creation of new user
-        public async Task<Object> PostApplicationUser(UserRegister model)
+        public async Task<Object> Register(UserRegister model)
         {
-            var newUser = new User()
-            {
-                UserName = model.UserName,
-                Email = model.Email,
-                FullName = model.FullName,
-                UserActive = true
-            };
-
+            User newUser = AccountHelper.CreateUser(model);
             try
             {
-                var result = await _userManager.CreateAsync(newUser, model.Password);
+                IdentityResult result = await _userManager.CreateAsync(newUser, model.Password);
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest();
             }
         }
 
@@ -64,29 +58,14 @@ namespace UsersWebApi.Controllers
         public async Task<IActionResult> Login(UserLogin model)
         {
             //getting user by username from login form
-            var user = await _userManager.FindByNameAsync(model.UserName);
+            User user = await _userManager.FindByNameAsync(model.UserName);
             //if this user data are correct
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            bool checkPassword = await _userManager.CheckPasswordAsync(user, model.Password);
+            if (user != null && checkPassword)
             {
-                //create token for user
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim("UserID",user.Id.ToString())
-                    }),
-                    //after 10 min token expires
-                    Expires = DateTime.UtcNow.AddMinutes(10),
-                    //encryption parameters
-                    SigningCredentials = new SigningCredentials(
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.JWT_Secret)), 
-                        SecurityAlgorithms.HmacSha256Signature)
-                };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                //create token w/ described parameters
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
                 //send token to user
+                _logger.LogDebug($"JWTSecret key from config: {_options.JWTSecret}");
+                string token = AccountHelper.CreateToken(user, _options.JWTSecret);
                 return Ok(new { token });
             }
             else

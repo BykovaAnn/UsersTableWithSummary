@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UsersWebApi.Models;
@@ -14,6 +11,7 @@ namespace UsersWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UsersContext _context;
@@ -26,41 +24,25 @@ namespace UsersWebApi.Controllers
 
         // GET: api/Users/
         [HttpGet]
-        //[Authorize]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.ApplicationUsers.OrderBy( x => x.UserName).ToListAsync();
         }
 
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(string id)
-        {
-            var user = await _context.ApplicationUsers.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
-        }
-
         // PUT: api/Users/{id}
         [HttpPut("{id}")]
-        [Authorize]
-        public async Task<IActionResult> PutUser(string id, User user)
+        public async Task<IActionResult> UpdateUserActive(string id, User user)
         {
             if (id != user.Id)
             {
                 return BadRequest();
             }
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(user).Property(x => x.UserActive).IsModified = true;
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!UserExists(id))
                 {
@@ -68,37 +50,11 @@ namespace UsersWebApi.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
 
             return NoContent();
-        }
-
-        // POST: api/Users
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
-        {
-            _context.ApplicationUsers.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = /*user.UserID*/ 99999 }, user);
-        }
-
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
-        {
-            var user = await _context.ApplicationUsers.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.ApplicationUsers.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return user;
         }
 
         private bool UserExists(string id)
