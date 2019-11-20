@@ -19,15 +19,11 @@ namespace UsersWebApi.Controllers
     [ApiController]
     public class UsersAccountController : ControllerBase
     {
-        private readonly ILogger<UsersAccountController> _logger;
-
         private readonly UserManager<User> _userManager;
         private readonly AuthenticationOptions _options;
 
-        public UsersAccountController(ILogger<UsersAccountController> logger
-            , UserManager<User> userManager, IOptions<AuthenticationOptions> options)
+        public UsersAccountController(UserManager<User> userManager, IOptions<AuthenticationOptions> options)
         {
-            _logger = logger;
             _userManager = userManager;
             //options consist of JWTSecret and angular localhost url
             _options = options.Value;
@@ -64,7 +60,6 @@ namespace UsersWebApi.Controllers
             if (user != null && checkPassword)
             {
                 //send token to user
-                _logger.LogDebug($"JWTSecret key from config: {_options.JWTSecret}");
                 string token = AccountHelper.CreateToken(user, _options.JWTSecret);
                 return Ok(new { token });
             }

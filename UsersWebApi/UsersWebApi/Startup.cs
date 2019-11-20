@@ -48,9 +48,9 @@ namespace UsersWebApi
             }
             );
         
-        //Jwt Authentication
+            //Jwt Authentication
 
-        var key = Encoding.UTF8.GetBytes(Configuration["UserAuthorization:JWTSecret"].ToString());
+            var key = Encoding.UTF8.GetBytes(Configuration["UserAuthorization:JWTSecret"].ToString());
 
             services.AddAuthentication(x =>
             {

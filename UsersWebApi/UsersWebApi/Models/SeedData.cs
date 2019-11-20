@@ -10,7 +10,7 @@ namespace UsersWebApi.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new UsersContext(serviceProvider.GetRequiredService<DbContextOptions<UsersContext>>()))
+            using (UsersContext context = new UsersContext(serviceProvider.GetRequiredService<DbContextOptions<UsersContext>>()))
             {
                 // Look for any Users
                 if (context.ApplicationUsers.Any())
