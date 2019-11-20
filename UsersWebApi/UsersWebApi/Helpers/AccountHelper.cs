@@ -29,7 +29,7 @@ namespace UsersWebApi.Helpers
 
         public static string CreateToken(User user, string jwtsecret)
         {
-            var tokenDescriptor = new SecurityTokenDescriptor
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                     {
@@ -42,9 +42,9 @@ namespace UsersWebApi.Helpers
                         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtsecret)),
                         SecurityAlgorithms.HmacSha256Signature)
             };
-            var tokenHandler = new JwtSecurityTokenHandler();
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             //create token w/ described parameters
-            var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(securityToken);
         }
     }

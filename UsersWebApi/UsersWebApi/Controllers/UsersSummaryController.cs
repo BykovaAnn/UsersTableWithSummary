@@ -9,6 +9,7 @@ namespace UsersWebApi.Controllers
     //Api Controller for UsersSummary model
 
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class UsersSummaryController : ControllerBase
     {
@@ -20,7 +21,6 @@ namespace UsersWebApi.Controllers
 
         // GET: api/UsersSummary
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<UsersSummary>> GetUsersSummary()
         {
             UsersSummary usersSummary = new UsersSummary();
